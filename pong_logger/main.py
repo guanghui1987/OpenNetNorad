@@ -143,7 +143,7 @@ def init_db():
 def test():
     return jsonify({"reuslt": 0, "msg": "just a test"})
 
-@app.route('/')
+@app.route('/servers/activepongers')
 def home():
     """
     Returns the list of active pongers to the caller (usually pingers):
