@@ -174,9 +174,15 @@ def home():
     }
     """
     logger.info('Home...')
-    servers = db.session.query(Pong).filter_by(is_active=True)
-    return jsonify(json_list=[serialize_server(ponger) for ponger in servers.all()])
+    json_value = {"json_list": []}
+    try:
+        servers = db.session.query(Pong).filter_by(is_active=True)    
+        json_value = jsonify(json_list = [serialize_server(ponger) for ponger in servers.all()])
+    except Exception as e:
+        json_value = {"json_list": []}
+        logger.debug('Could not query the list of active pongers to the caller'.format(e))
 
+    return json_value
 
 @app.route('/servers/update', methods=['POST'])
 def update_log():
