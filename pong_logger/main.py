@@ -50,13 +50,6 @@ scheduler.start()
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())
 
-scheduler.add_job(
-    func=disable_old_hosts,
-    trigger=IntervalTrigger(minutes=1),
-    id='clean_job',
-    name='Clean inactive hosts',
-    replace_existing=True
-)
 
 
 class Pong(db.Model):
@@ -128,6 +121,15 @@ def str_to_bool(s):
         return True
     else:
         return False
+
+        
+scheduler.add_job(
+    func=disable_old_hosts,
+    trigger=IntervalTrigger(minutes=1),
+    id='clean_job',
+    name='Clean inactive hosts',
+    replace_existing=True
+)
 
 
 @app.cli.command('initdb')
