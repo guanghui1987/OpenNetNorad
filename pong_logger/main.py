@@ -132,8 +132,9 @@ scheduler.add_job(
 )
 
 
-@app.cli.command('initdb')
-def initdb_command():
+#@app.cli.command('initdb')
+#def initdb_command():
+def init_db():
     """Initializes the database."""
     db.create_all()
     logger.info('Database initialized')
@@ -317,4 +318,5 @@ def create_log():
 
 
 if __name__ == '__main__':
+    init_db()
     app.run()
