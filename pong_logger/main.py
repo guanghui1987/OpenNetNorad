@@ -136,6 +136,9 @@ def initdb_command():
     db.create_all()
     logger.info('Database initialized')
 
+@app.route('/test')
+def test():
+    return jsonify({"reuslt": 0, "msg": "just a test"})
 
 @app.route('/')
 def home():
