@@ -129,7 +129,7 @@ fi
 
 # Connect to the controller for the targets
 export PYTHONIOENCODING=utf8
-HOSTS=`curl -s -d "xkey=c79c2a46-728d-4694-87b9-670c42d9f87e" "http://$master:5000/v1/servers/activepongers" | python3 -c "import sys, json; hosts = ['{},{},{},{}'.format(i['host'],i['rack'],i['cluster'],i['region']) for i in json.load(sys.stdin)['json_list']]; print ('\n'.join(hosts));"`
+HOSTS=`curl -s -d "xkey=c79c2a46728d469487b9670c42d9f87e" "http://$master:5000/v1/servers/activepongers" | python3 -c "import sys, json; hosts = ['{},{},{},{}'.format(i['host'],i['rack'],i['cluster'],i['region']) for i in json.load(sys.stdin)['json_list']]; print ('\n'.join(hosts));"`
 
 # Check if controller provided targets
 if [[ -z "${HOSTS// }" ]]; then
