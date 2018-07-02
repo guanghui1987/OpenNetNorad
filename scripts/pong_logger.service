@@ -6,7 +6,7 @@ After=network.target
 User=www-data
 Group=www-data
 WorkingDirectory=/var/www/OpenNetNorad/pong_logger
-ExecStart=/usr/bin/uwsgi --plugin python3 --ini main.ini
+ExecStart=/var/www/OpenNetNorad/pong_logger/pong_logger -addr=127.0.0.1:5000
 
 [Install]
 WantedBy=multi-user.target
