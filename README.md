@@ -37,38 +37,11 @@ Install pong_logger webservice
     
 - Clone the pong_logger project
     
-    `cd /var/www/ && git clone https://github.com/fbsamples/OpenNetNorad`
+    `cd /var/www/ && git clone https://github.com/guanghui1987/OpenNetNorad.git`
 
-- Copy the nginx config file of the web system to '/etc/nginx/sites-enabled' and **edit server_name** to be the IP address of your server/instance or FQDN
-    
-    `sudo cp OpenNetNorad/scripts/nginx_pong_logger.conf /etc/nginx/sites-enabled/`
-    
-    `vim /etc/nginx/sites-enabled/nginx_pong_logger.conf`
-    
-    Example:
-    
-    ```
-    server {
-    listen 5000;
-    server_name 192.168.1.1;
-    location / {
-        include uwsgi_params;
-        uwsgi_pass unix:///var/www/OpenNetNorad/pong_logger/pong_logger.sock;
-        }
-    }
-    ```
-    
-    - Optionally you can also set a diferent listening port for nginx (5000 by default)
+- Install python3:
 
-- Install pip for python3:
-
-    `sudo apt install python3-pip`
-
-- Now you need to install the modules that we use on the controller code to handle the pingers/pongers and to make everything run.
-
-    `sudo apt install python3-flask python3-flask-sqlalchemy uwsgi uwsgi-plugin-python3`
-
-    `sudo pip3 install apscheduler`
+    `sudo apt install -y python3`
     
 - We provide a base "empty" sqlite DB that is used by the framework to register pinger and pongers activity. You need to copy the needed files and set permissions accordingly.
     
@@ -76,9 +49,11 @@ Install pong_logger webservice
     
     `sudo chmod 755 OpenNetNorad/pong_logger/app.sqlite && sudo chown www-data: OpenNetNorad/pong_logger/app.sqlite`
     
+    `sudo chmod 755 OpenNetNorad/pong_logger/pong_logger`
+
     `sudo chown -R www-data: /var/www/OpenNetNorad/pong_logger/`
 
-- Prepare the uwsgi service
+- Prepare the pong_logger service
 
     `sudo cp OpenNetNorad/scripts/pong_logger.service /lib/systemd/system/`
     
